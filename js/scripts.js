@@ -48,7 +48,7 @@ var getWeather = function(location) {
       $(".geo .city").text(weather.city);
       $(".geo .temp").text(weather.temp+'&deg;');
       $(".geo .climate_box").text('<img class="weathericon" src="/weather-app/img/weathericons/' + weather.code + '.svg">');
-      $(".geo .windspeed").text('<p>' + weather.wind.speed + '</p><p>' +  var weather.units.speed + '</p>');
+      $(".geo .windspeed").text('<p>' + weather.wind.speed + '</p><p>' + weather.units.speed + '</p>');
       $(".geo .humidity").text(weather.humidity + ' %');
     
     }
