@@ -18,36 +18,26 @@
 /*******Geolocation********/
 // Get and store Geo Location lat/long coordinates
 if("geolocation" in navigator) {navigator.geolocation.getCurrentPosition(function(position) {
-    getWeather(position.coords.latitude + ',' + position.coords.longitude);
+    $getWeather(position.coords.latitude + ',' + position.coords.longitude);
 });}
-  
-  
-  var lat = position.coords.latitude;
-  var long = position.coords.longitude;
-  console.log( lat, long); 
   
     $(document).ready(function(){
         setInterval(getWeather, 5000);
     })
 
 
-var getWeather = function (location, woeid) {
+var getWeather = function (location) {
     $.simpleWeather({
     location: location,
     woeid: woeid,
     unit: 'f',
     success: function(weather) {
-        var city = weather.city;
-        var temp = weather.temp+'&deg;';
-        var  wcode = '<img class="weathericon" src="/images/weathericons/' + weather.code + '.svg">';
-        var wind = '<p>' + weather.wind.speed + '</p><p>' +  var weather.units.speed + '</p>';
-        var humidity = weather.humidity + ' %';
-        
-      $(".location").text(city);
-      $(".temperature").text(temp);
-      $(".climate_bg").text(wcode);
-      $(".windspeed").text(wind);
-      $(".humidity").text(humidity);
+          
+      $(".geo .location").text(weather.city);
+      $(".geo .temp").text(weather.temp+'&deg;');
+      $(".geo .climate_bg").text('<img class="weathericon" src="/images/weathericons/' + weather.code + '.svg">');
+      $(".geo .windspeed").text('<p>' + weather.wind.speed + '</p><p>' +  var weather.units.speed + '</p>');
+      $(".geo .humidity").text(weather.humidity + ' %');
     
     }
     });
