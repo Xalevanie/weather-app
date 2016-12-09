@@ -17,25 +17,37 @@
 
 /*******Geolocation********/
 // Get and store Geo Location lat/long coordinates
-if("geolocation" in navigator) {navigator.geolocation.getCurrentPosition(function(position) {
-    $getWeather(position.coords.latitude + ',' + position.coords.longitude);
-});}
+if ('geolocation' in navigator) {
+
+   $('.geo button').show(); 
+
+} else {
   
-    $(document).ready(function(){
-        setInterval(getWeather, 5000);
-    })
+  $('.geo button').hide();
+  $('.geo').prepend('<p>Geolocation Not Supported</p>');
 
+}
 
-var getWeather = function (location) {
-    $.simpleWeather({
+$('.geo button').click( function() {
+     
+    navigator.geolocation.getCurrentPosition(function(position) {
+        getWeather(position.coords.latitude+','+position.coords.longitude); 
+    });
+   
+});
+
+// Get geolocated weather
+var getWeather = function(location) {
+    
+   $.simpleWeather({
     location: location,
-    woeid: woeid,
+    woeid: '',
     unit: 'f',
     success: function(weather) {
           
       $(".geo .city").text(weather.city);
       $(".geo .temp").text(weather.temp+'&deg;');
-      $(".geo .climate_bg").text('<img class="weathericon" src="/weather-app/img/weathericons/' + weather.code + '.svg">');
+      $(".geo .climate_box").text('<img class="weathericon" src="/weather-app/img/weathericons/' + weather.code + '.svg">');
       $(".geo .windspeed").text('<p>' + weather.wind.speed + '</p><p>' +  var weather.units.speed + '</p>');
       $(".geo .humidity").text(weather.humidity + ' %');
     
