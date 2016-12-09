@@ -33,7 +33,7 @@ var getWeather = function (location) {
     unit: 'f',
     success: function(weather) {
           
-      $(".geo .location").text(weather.city);
+      $(".geo .city").text(weather.city);
       $(".geo .temp").text(weather.temp+'&deg;');
       $(".geo .climate_bg").text('<img class="weathericon" src="/images/weathericons/' + weather.code + '.svg">');
       $(".geo .windspeed").text('<p>' + weather.wind.speed + '</p><p>' +  var weather.units.speed + '</p>');
